@@ -9,6 +9,7 @@ import Camps from "../components/Camps/Camps";
 import Testimonials from "../components/Testimonials/testimonials";
 import FAQ from "../components/FAQ/FAQ";
 import Footer from "../components/Footer/Footer";
+import HowItWorks from "../components/HowItWorks/HowItWorks";
 
 function Home() {
 
@@ -24,6 +25,8 @@ function Home() {
 <Stats/>
 
 <Features/>
+
+<HowItWorks />
 
 <Hospitals/>
 
