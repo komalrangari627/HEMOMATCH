@@ -9,6 +9,13 @@ import BloodBanks from "./pages/BloodBanks";
 import Camps from "./pages/Camps";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import DonorDashboard from "./pages/DonorDashboard";
+import RecipientDashboard from "./pages/RecipientDashboard";
+import HospitalDashboard from "./pages/HospitalDashboard";
+import BloodBankDashboard from "./pages/BloodBankDashboard";
+import Admin from "./pages/Admin";
 
 function App() {
   return (
@@ -22,6 +29,13 @@ function App() {
       <Route path="/camps" element={<Camps />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/dashboard" element={ <ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/donor-dashboard" element={<DonorDashboard />} />
+      <Route path="/recipient-dashboard" element={<RecipientDashboard />} />
+      <Route path="/hospital-dashboard" element={<HospitalDashboard />} />
+      <Route path="/bloodbank-dashboard" element={<BloodBankDashboard />} />
+      <Route path="/admin-dashboard" element={<Admin />} />
     </Routes>
   );
 }

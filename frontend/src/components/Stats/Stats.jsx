@@ -39,7 +39,8 @@ function Stats() {
 
             return (
               <div className="stat-card" key={index}>
-                <div className="stat-icon">
+                <div className="stat-icon" data-aos="fade-up"
+                  data-aos-delay={index * 100}>
                   <Icon />
                 </div>
 

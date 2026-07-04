@@ -1,6 +1,6 @@
-.navbar{
+/* ========================= */
 
-width:100%;
+.navbar{
 
 position:fixed;
 
@@ -8,33 +8,53 @@ top:0;
 
 left:0;
 
+width:100%;
+
 z-index:999;
 
-background:white;
+padding:18px 0;
 
-box-shadow:0 8px 20px rgba(0,0,0,.05);
+transition:.35s;
 
 }
+
+.sticky{
+
+background:rgba(255,255,255,.92);
+
+backdrop-filter:blur(20px);
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* ========================= */
 
 .navbar-container{
 
-height:80px;
-
 display:flex;
-
-justify-content:space-between;
 
 align-items:center;
 
+justify-content:space-between;
+
+gap:30px;
+
 }
 
+/* ========================= */
+
 .logo{
+
+flex:1;
 
 display:flex;
 
 align-items:center;
 
 gap:10px;
+
+text-decoration:none;
 
 font-size:28px;
 
@@ -44,57 +64,105 @@ color:#D62828;
 
 }
 
-.logo-icon{
+.logo svg{
 
-font-size:30px;
+font-size:32px;
 
 }
 
-.nav-menu{
+/* ========================= */
+
+.nav{
+
+flex:2;
 
 display:flex;
 
-gap:30px;
+justify-content:center;
+
+align-items:center;
+
+gap:35px;
 
 }
 
-.nav-menu a{
+.nav a{
 
-font-size:16px;
+position:relative;
 
-font-weight:500;
+text-decoration:none;
+
+font-weight:600;
+
+color:#444;
 
 transition:.3s;
 
 }
 
-.nav-menu a:hover{
+.nav a:hover{
 
 color:#D62828;
 
 }
 
-.nav-menu .active{
+/* Active Link */
+
+.nav a.active{
 
 color:#D62828;
 
 }
+
+.nav a.active::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-8px;
+
+width:100%;
+
+height:3px;
+
+background:#D62828;
+
+border-radius:20px;
+
+}
+
+/* ========================= */
 
 .nav-buttons{
 
+flex:1;
+
 display:flex;
+
+justify-content:flex-end;
+
+align-items:center;
 
 gap:15px;
 
 }
 
+/* ========================= */
+
 .login-btn{
 
-padding:10px 22px;
+padding:11px 24px;
 
 border:2px solid #D62828;
 
-border-radius:50px;
+border-radius:30px;
+
+text-decoration:none;
+
+font-weight:600;
 
 color:#D62828;
 
@@ -112,13 +180,19 @@ color:white;
 
 .register-btn{
 
-padding:10px 24px;
+padding:12px 26px;
 
-background:#D62828;
+border-radius:30px;
 
-border-radius:50px;
+text-decoration:none;
+
+font-weight:600;
 
 color:white;
+
+background:linear-gradient(90deg,#D62828,#B91C1C);
+
+box-shadow:0 10px 25px rgba(214,40,40,.25);
 
 transition:.3s;
 
@@ -126,47 +200,45 @@ transition:.3s;
 
 .register-btn:hover{
 
-background:#B71C1C;
+transform:translateY(-3px);
 
 }
 
-.mobile-menu{
+/* ========================= */
+
+.mobile-buttons{
 
 display:none;
 
-font-size:24px;
+}
+
+/* ========================= */
+
+.menu-btn{
+
+display:none;
+
+font-size:28px;
+
+background:none;
+
+border:none;
 
 cursor:pointer;
 
-}
+color:#D62828;
 
-@media(max-width:900px){
-
-.nav-menu{
-
-position:absolute;
-
-top:80px;
-
-left:-100%;
-
-width:100%;
-
-background:white;
-
-display:flex;
-
-flex-direction:column;
-
-padding:30px;
-
-transition:.4s;
+margin-left:15px;
 
 }
 
-.nav-menu.active{
+/* ========================= */
 
-left:0;
+@media(max-width:992px){
+
+.menu-btn{
+
+display:block;
 
 }
 
@@ -176,9 +248,93 @@ display:none;
 
 }
 
-.mobile-menu{
+.nav{
 
-display:block;
+position:fixed;
+
+top:0;
+
+right:-100%;
+
+width:300px;
+
+height:100vh;
+
+background:white;
+
+padding:100px 35px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:flex-start;
+
+align-items:flex-start;
+
+gap:25px;
+
+box-shadow:-10px 0 30px rgba(0,0,0,.15);
+
+transition:.4s;
+
+z-index:998;
+
+}
+
+.nav.active{
+
+right:0;
+
+}
+
+.nav a{
+
+font-size:18px;
+
+}
+
+.mobile-buttons{
+
+display:flex;
+
+flex-direction:column;
+
+width:100%;
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+.mobile-buttons a{
+
+text-align:center;
+
+}
+
+}
+
+/* ========================= */
+
+@media(max-width:576px){
+
+.logo{
+
+font-size:22px;
+
+}
+
+.logo svg{
+
+font-size:26px;
+
+}
+
+.menu-btn{
+
+font-size:24px;
 
 }
 

@@ -80,7 +80,8 @@ function HowItWorks() {
 
           {steps.map((step) => (
 
-            <div className="timeline-card" key={step.id}>
+            <div className="timeline-card" key={step.id} data-aos="flip-left"
+              data-aos-delay={step.id * 100}>
 
               <div className="step-number">
 

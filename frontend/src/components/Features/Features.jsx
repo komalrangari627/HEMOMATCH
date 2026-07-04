@@ -70,7 +70,8 @@ function Features() {
         <div className="features-grid">
 
           {features.map((item, index) => (
-            <div className="feature-card" key={index}>
+            <div className="feature-card" key={index} data-aos="fade-up"
+              data-aos-delay={index * 100}>
 
               <div className="feature-icon">
                 {item.icon}

@@ -1,13 +1,11 @@
 import Sidebar from "../components/Dashboard/Sidebar";
 import Topbar from "../components/Dashboard/Topbar";
 import Statistics from "../components/Dashboard/Statistics";
-import DonorTable from "../components/Dashboard/DonorTable";
-import RequestTable from "../components/Dashboard/RequestTable";
-import DonationChart from "../components/Dashboard/DonationChart";
-import BloodGroupChart from "../components/Dashboard/BloodGroupChart";
+import RecentRequests from "../components/Dashboard/RecentRequests";
+import NotificationPanel from "../components/Dashboard/NotificationPanel";
 import "../styles/Dashboard.css";
 
-function Admin() {
+function RecipientDashboard() {
 
   return (
 
@@ -23,15 +21,11 @@ function Admin() {
 
         <div className="dashboard-grid">
 
-          <DonationChart />
+          <RecentRequests />
 
-          <BloodGroupChart />
+          <NotificationPanel />
 
         </div>
-
-        <DonorTable />
-
-        <RequestTable />
 
       </div>
 
@@ -41,4 +35,4 @@ function Admin() {
 
 }
 
-export default Admin;
+export default RecipientDashboard;

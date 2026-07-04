@@ -71,7 +71,8 @@ reviews.map((review)=>(
 
 <div
 className="testimonial-card"
-key={review.id}
+key={review.id} data-aos="flip-up"
+data-aos-delay={review.id * 100}
 >
 
 <FaQuoteLeft className="quote"/>

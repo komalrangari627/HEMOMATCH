@@ -1,0 +1,45 @@
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:35px;
+
+background:white;
+
+padding:20px 25px;
+
+border-radius:18px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.topbar h2{
+
+margin-bottom:6px;
+
+}
+
+.topbar p{
+
+color:#777;
+
+}
+
+.profile img{
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+border:3px solid #D62828;
+
+}

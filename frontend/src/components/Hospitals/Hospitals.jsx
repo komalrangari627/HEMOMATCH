@@ -68,7 +68,8 @@ emergency requests and blood availability.
 
 {hospitals.map((hospital)=>(
 
-<div className="hospital-card" key={hospital.id}>
+<div className="hospital-card" key={hospital.id} data-aos="fade-up"
+data-aos-delay={hospital.id * 120}>
 
 <img
 src={hospital.image}

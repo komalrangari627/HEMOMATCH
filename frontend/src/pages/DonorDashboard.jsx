@@ -1,13 +1,13 @@
 import Sidebar from "../components/Dashboard/Sidebar";
 import Topbar from "../components/Dashboard/Topbar";
 import Statistics from "../components/Dashboard/Statistics";
-import DonorTable from "../components/Dashboard/DonorTable";
-import RequestTable from "../components/Dashboard/RequestTable";
 import DonationChart from "../components/Dashboard/DonationChart";
-import BloodGroupChart from "../components/Dashboard/BloodGroupChart";
+import ProfileCard from "../components/Dashboard/ProfileCard";
+import UpcomingCamps from "../components/Dashboard/UpcomingCamps";
+import ActivityTimeline from "../components/Dashboard/ActivityTimeline";
 import "../styles/Dashboard.css";
 
-function Admin() {
+function DonorDashboard() {
 
   return (
 
@@ -25,13 +25,17 @@ function Admin() {
 
           <DonationChart />
 
-          <BloodGroupChart />
+          <ProfileCard />
 
         </div>
 
-        <DonorTable />
+        <div className="dashboard-grid">
 
-        <RequestTable />
+          <UpcomingCamps />
+
+          <ActivityTimeline />
+
+        </div>
 
       </div>
 
@@ -41,4 +45,4 @@ function Admin() {
 
 }
 
-export default Admin;
+export default DonorDashboard;

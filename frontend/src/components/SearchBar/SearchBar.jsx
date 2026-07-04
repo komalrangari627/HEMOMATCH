@@ -7,7 +7,7 @@ function SearchBar() {
 
       <div className="container">
 
-        <div className="search-card">
+        <div className="search-card" data-aos="zoom-in">
 
           <div className="search-header">
 

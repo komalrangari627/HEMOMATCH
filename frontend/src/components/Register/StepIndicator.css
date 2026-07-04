@@ -1,0 +1,90 @@
+.stepper{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:50px;
+    position:relative;
+    width:100%;
+}
+
+.stepper::before{
+    content:"";
+    position:absolute;
+    top:22px;
+    left:0;
+    width:100%;
+    height:4px;
+    background:#e5e7eb;
+    z-index:0;
+    border-radius:20px;
+}
+
+.step{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    flex:1;
+}
+
+.step div{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#d1d5db;
+    color:#555;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:18px;
+    transition:0.3s;
+    border:4px solid #ffffff;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.step span{
+    margin-top:12px;
+    font-size:14px;
+    font-weight:600;
+    color:#777;
+    text-align:center;
+}
+
+.step.active div{
+    background:#D62828;
+    color:#ffffff;
+    box-shadow:0 8px 18px rgba(214,40,40,0.35);
+}
+
+.step.active span{
+    color:#D62828;
+}
+
+.step.completed div{
+    background:#16a34a;
+    color:#ffffff;
+}
+
+@media (max-width:768px){
+
+    .stepper{
+        margin-bottom:35px;
+    }
+
+    .step div{
+        width:38px;
+        height:38px;
+        font-size:15px;
+    }
+
+    .step span{
+        font-size:12px;
+    }
+
+    .stepper::before{
+        top:19px;
+    }
+
+}

@@ -1,13 +1,12 @@
 import Sidebar from "../components/Dashboard/Sidebar";
 import Topbar from "../components/Dashboard/Topbar";
 import Statistics from "../components/Dashboard/Statistics";
-import DonorTable from "../components/Dashboard/DonorTable";
-import RequestTable from "../components/Dashboard/RequestTable";
+import BloodInventory from "../components/Dashboard/BloodInventory";
+import RequestStatusChart from "../components/Dashboard/RequestStatusChart";
 import DonationChart from "../components/Dashboard/DonationChart";
-import BloodGroupChart from "../components/Dashboard/BloodGroupChart";
 import "../styles/Dashboard.css";
 
-function Admin() {
+function BloodBankDashboard() {
 
   return (
 
@@ -23,15 +22,13 @@ function Admin() {
 
         <div className="dashboard-grid">
 
-          <DonationChart />
+          <BloodInventory />
 
-          <BloodGroupChart />
+          <RequestStatusChart />
 
         </div>
 
-        <DonorTable />
-
-        <RequestTable />
+        <DonationChart />
 
       </div>
 
@@ -41,4 +38,4 @@ function Admin() {
 
 }
 
-export default Admin;
+export default BloodBankDashboard;

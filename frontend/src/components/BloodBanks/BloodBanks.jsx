@@ -70,7 +70,8 @@ Check blood availability from trusted blood banks connected with HemoMatch.
 
 <div
 className="bloodbank-card"
-key={bank.id}
+key={bank.id} data-aos="zoom-in-up"
+data-aos-delay={bank.id * 120}
 >
 
 <img

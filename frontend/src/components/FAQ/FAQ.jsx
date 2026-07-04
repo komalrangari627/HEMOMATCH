@@ -80,6 +80,7 @@ function FAQ() {
                 : "faq-card"
               }
               key={index}
+              data-aos="fade-up"
               >
 
                 <div

@@ -79,7 +79,8 @@ camps.map((camp)=>(
 
 <div
 className="camp-card"
-key={camp.id}
+key={camp.id} data-aos="fade-up"
+data-aos-delay={camp.id * 120}
 >
 
 <div className="camp-image">

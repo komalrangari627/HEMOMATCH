@@ -17,7 +17,7 @@ function Footer() {
   return (
     <footer className="footer">
 
-      <div className="container footer-grid">
+      <div className="container footer-grid" data-aos="fade-up">
 
         {/* Company */}
 
