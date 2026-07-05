@@ -4,6 +4,7 @@ import {
   FaUsers,
   FaHeartbeat,
 } from "react-icons/fa";
+import {getDashboardStats} from "../../services/dashboard";
 
 import DashboardCard from "./DashboardCard";
 

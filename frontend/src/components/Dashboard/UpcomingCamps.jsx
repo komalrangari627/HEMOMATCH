@@ -1,3 +1,5 @@
+import {getDonationCamps} from "../../services/camp";
+
 function UpcomingCamps() {
 
   const camps = [

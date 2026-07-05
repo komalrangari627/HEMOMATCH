@@ -16,6 +16,12 @@ import {
   FaHeart,
 } from "react-icons/fa";
 
+import {
+  loginUser,
+  registerUser,
+  getCurrentUser
+} from "../services";
+
 function Login() {
 
   const navigate = useNavigate();

@@ -1,3 +1,5 @@
+import {getNotifications} from "../../services/notification";
+
 const notifications=[
 
 {

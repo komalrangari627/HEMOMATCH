@@ -8,6 +8,11 @@ import AccountStep from "../components/Register/AccountStep";
 import PersonalStep from "../components/Register/PersonalStep";
 import AddressStep from "../components/Register/AddressStep";
 import ReviewStep from "../components/Register/ReviewStep";
+import {
+  loginUser,
+  registerUser,
+  getCurrentUser
+} from "../services";
 
 function Register() {
 

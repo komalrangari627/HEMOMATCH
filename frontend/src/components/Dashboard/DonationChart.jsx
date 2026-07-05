@@ -7,6 +7,7 @@ import {
   YAxis,
   Tooltip
 } from "recharts";
+import {getDashboardStats} from "../../services/dashboard";
 
 const data = [
   { month: "Jan", donations: 40 },

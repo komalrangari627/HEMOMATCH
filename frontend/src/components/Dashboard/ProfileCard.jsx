@@ -4,6 +4,7 @@ FaEnvelope,
 FaPhone,
 FaMapMarkerAlt
 } from "react-icons/fa";
+import {getProfile} from "../../services/profile";
 
 function ProfileCard(){
 

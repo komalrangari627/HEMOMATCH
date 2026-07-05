@@ -9,6 +9,8 @@ import BloodGroupChart from "../components/Dashboard/BloodGroupChart";
 import RequestStatusChart from "../components/Dashboard/RequestStatusChart";
 import ActivityTimeline from "../components/Dashboard/ActivityTimeline";
 import NotificationPanel from "../components/Dashboard/NotificationPanel";
+import {getDashboardStats} from "../services/dashboard";
+import {getNotifications} from "../services/notification";
 
 function Dashboard() {
 

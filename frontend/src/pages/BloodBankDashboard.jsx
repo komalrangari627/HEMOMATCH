@@ -5,6 +5,7 @@ import BloodInventory from "../components/Dashboard/BloodInventory";
 import RequestStatusChart from "../components/Dashboard/RequestStatusChart";
 import DonationChart from "../components/Dashboard/DonationChart";
 import "../styles/Dashboard.css";
+import {getBloodBanks} from "../services/bloodBank";
 
 function BloodBankDashboard() {
 

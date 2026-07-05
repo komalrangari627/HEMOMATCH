@@ -1,3 +1,8 @@
+import {
+getAllDonors,
+searchDonors
+} from "../../services";
+
 function DonorTable() {
 
   const donors=[

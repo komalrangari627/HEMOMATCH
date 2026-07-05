@@ -1,55 +1,77 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import {
+  loginUser,
+  registerUser,
+  getCurrentUser
+} from "../services";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+function AuthProvider({ children }) {
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
+    const [user, setUser] = useState(null);
 
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setUser(decoded);
-      } catch (error) {
-        console.error("Invalid token:", error);
-        localStorage.removeItem("token");
-      }
-    }
+    const [loading, setLoading] = useState(true);
 
-    setLoading(false);
-  }, []);
+    useEffect(() => {
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
+        const token = localStorage.getItem("token");
 
-    const decoded = jwtDecode(token);
+        const savedUser = localStorage.getItem("user");
 
-    setUser(decoded);
-  };
+        if (token && savedUser) {
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-  };
+            setUser(JSON.parse(savedUser));
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        logout,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  );
+        }
+
+        setLoading(false);
+
+    }, []);
+
+    const login = (userData, token) => {
+
+        localStorage.setItem("token", token);
+
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        setUser(userData);
+
+    };
+
+    const logout = () => {
+
+        localStorage.clear();
+
+        setUser(null);
+
+    };
+
+    return (
+
+        <AuthContext.Provider
+
+            value={{
+
+                user,
+
+                login,
+
+                logout,
+
+                loading
+
+            }}
+
+        >
+
+            {children}
+
+        </AuthContext.Provider>
+
+    );
+
 }
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+export default AuthProvider;

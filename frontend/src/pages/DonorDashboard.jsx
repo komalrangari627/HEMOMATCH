@@ -6,6 +6,10 @@ import ProfileCard from "../components/Dashboard/ProfileCard";
 import UpcomingCamps from "../components/Dashboard/UpcomingCamps";
 import ActivityTimeline from "../components/Dashboard/ActivityTimeline";
 import "../styles/Dashboard.css";
+import {
+getAllDonors,
+searchDonors
+} from "../services";
 
 function DonorDashboard() {
 

@@ -5,6 +5,8 @@ import BloodInventory from "../components/Dashboard/BloodInventory";
 import RequestTable from "../components/Dashboard/RequestTable";
 import DonationChart from "../components/Dashboard/DonationChart";
 import "../styles/Dashboard.css";
+import {getHospitals, getHospitalInventory} from "../services/hospital";
+import {getRequests} from "../services/request";
 
 function HospitalDashboard() {
 

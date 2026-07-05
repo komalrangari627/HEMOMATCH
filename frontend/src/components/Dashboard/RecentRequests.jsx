@@ -1,3 +1,5 @@
+import {getRequests} from "../../services/request";
+
 function RecentRequests() {
 
   const requests = [

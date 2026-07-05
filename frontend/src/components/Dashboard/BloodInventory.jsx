@@ -2,6 +2,7 @@ import {
   FaTint,
   FaExclamationTriangle
 } from "react-icons/fa";
+import {getHospitals, getHospitalInventory} from "../../services/hospital";
 
 function BloodInventory() {
 

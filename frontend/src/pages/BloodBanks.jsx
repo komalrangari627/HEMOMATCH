@@ -1,3 +1,5 @@
+import {getBloodBanks} from "../services/bloodBank";
+
 function BloodBanks() {
   return (
     <section>

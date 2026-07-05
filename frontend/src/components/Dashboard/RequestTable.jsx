@@ -1,3 +1,5 @@
+import {getRequests} from "../../services/request";
+
 function RequestTable(){
 
 const requests=[

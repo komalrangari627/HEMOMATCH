@@ -7,6 +7,7 @@ XAxis,
 YAxis,
 Tooltip
 } from "recharts";
+import {getDashboardStats} from "../../services/dashboard";
 
 const data=[
 

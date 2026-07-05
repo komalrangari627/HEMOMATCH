@@ -4,6 +4,8 @@ import Statistics from "../components/Dashboard/Statistics";
 import RecentRequests from "../components/Dashboard/RecentRequests";
 import NotificationPanel from "../components/Dashboard/NotificationPanel";
 import "../styles/Dashboard.css";
+import {getRecipientRequests} from "../services/recipient";
+import {getRequests} from "../services/request";
 
 function RecipientDashboard() {
 
