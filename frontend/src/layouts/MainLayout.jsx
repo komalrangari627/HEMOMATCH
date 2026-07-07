@@ -3,25 +3,16 @@ import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 
 function MainLayout() {
-
   return (
-
     <>
-
       <Navbar />
 
-      <main>
-
+      <main style={{ minHeight: "80vh" }}>
         <Outlet />
-
       </main>
-
-      <Footer />
-
+   <Footer />
     </>
-
   );
-
 }
 
 export default MainLayout;

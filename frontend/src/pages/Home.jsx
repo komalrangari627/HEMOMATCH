@@ -38,10 +38,9 @@ function Home() {
 
 <FAQ/>
 
-<Footer/>
 
  <div style={{ marginTop: "80px" }}>
-        Home Page
+       
       </div>
     </>
   );

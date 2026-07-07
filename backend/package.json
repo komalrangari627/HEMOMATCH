@@ -1,4 +1,3 @@
-
 {
   "name": "hemomatch-backend",
   "version": "1.0.0",
@@ -19,7 +18,7 @@
     "multer": "^2.2.0",
     "nodemailer": "^9.0.1",
     "pdfkit": "^0.17.2",
+    "socket.io": "^4.8.3",
     "twilio": "^6.0.2"
   }
 }
-

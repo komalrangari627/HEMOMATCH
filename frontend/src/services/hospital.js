@@ -1,8 +1,26 @@
 import API from "./axios";
 
-export const getHospitals = () =>
 
-    API.get("/hospitals");
+export const getHospitals = ()=>{
+
+return API.get(
+"/hospitals/all"
+);
+
+};
+
+
+
+export const searchHospitals = (params)=>{
+
+return API.get(
+"/hospitals/search",
+{
+params
+}
+);
+
+};
 
 export const getHospitalInventory = () =>
 

@@ -8,4 +8,4 @@ export * from "./request";
 export * from "./camp";
 export * from "./notification";
 export * from "./profile";
-export { default as AuthProvider } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";

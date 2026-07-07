@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { AUTH } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 import useauth from "../hooks/useAuth";
 
