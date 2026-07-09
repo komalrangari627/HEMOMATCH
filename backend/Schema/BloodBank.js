@@ -67,7 +67,7 @@ const bloodBankSchema =
     }
   );
 
-export const bloodBankModel =
+export default  
   mongoose.model(
     "BloodBank",
     bloodBankSchema

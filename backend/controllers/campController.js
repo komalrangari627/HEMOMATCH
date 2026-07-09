@@ -1,11 +1,11 @@
-import { campModel } from "../Schema/Camp.js";
+import Camp from "../Schema/Camp.js";
 
 export const createCamp = async (
   req,
   res
 ) => {
   try {
-    const camp = await campModel.create({
+    const camp = await camp.create({
       ...req.body,
       createdBy: req.user.id,
     });
@@ -27,7 +27,7 @@ export const getAllCamps = async (
   res
 ) => {
   try {
-    const camps = await campModel.find();
+    const camps = await Camp.find();
 
     res.status(200).json({
       success: true,
@@ -48,7 +48,7 @@ export const getCampById = async (
 ) => {
   try {
     const camp =
-      await campModel.findById(
+      await Camp.findById(
         req.params.id
       );
 
@@ -77,7 +77,7 @@ export const updateCamp = async (
 ) => {
   try {
     const camp =
-      await campModel.findByIdAndUpdate(
+      await camp.findByIdAndUpdate(
         req.params.id,
         req.body,
         { new: true }
@@ -100,7 +100,7 @@ export const deleteCamp = async (
   res
 ) => {
   try {
-    await campModel.findByIdAndDelete(
+    await Camp.findByIdAndDelete(
       req.params.id
     );
 

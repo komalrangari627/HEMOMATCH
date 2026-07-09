@@ -1,4 +1,4 @@
-import { donorModel } from "../Schema/Donor.js";
+import Donor from "../Schema/Donor.js";
 
 
 // =========================
@@ -7,7 +7,7 @@ import { donorModel } from "../Schema/Donor.js";
 
 export const createDonor = async (req, res) => {
   try {
-    const donor = await donorModel.create({
+    const donor = await Donor.create({
       ...req.body,
       userId: req.user.id,
     });
@@ -37,7 +37,7 @@ export const getAllDonors = async (
 ) => {
   try {
     const donors =
-      await donorModel.find({
+      await Donor.find({
         approved: true,
       });
 
@@ -66,7 +66,7 @@ export const getDonorById = async (
 ) => {
   try {
     const donor =
-      await donorModel.findById(
+      await Donor.findById(
         req.params.id
       );
 
@@ -101,7 +101,7 @@ export const updateDonor = async (
 ) => {
   try {
     const donor =
-      await donorModel.findByIdAndUpdate(
+      await Donor.findByIdAndUpdate(
         req.params.id,
         req.body,
         {
@@ -133,7 +133,7 @@ export const deleteDonor = async (
   res
 ) => {
   try {
-    await donorModel.findByIdAndDelete(
+    await Donor.findByIdAndDelete(
       req.params.id
     );
 
@@ -186,7 +186,7 @@ export const searchDonors = async (
       filter.city = city;
 
     const donors =
-      await donorModel.find(filter);
+      await Donor.find(filter);
 
     res.status(200).json({
       success: true,
@@ -211,7 +211,7 @@ export const toggleAvailability =
   async (req, res) => {
     try {
       const donor =
-        await donorModel.findById(
+        await Donor.findById(
           req.params.id
         );
 
@@ -244,7 +244,7 @@ export const myDonorProfile =
   async (req, res) => {
     try {
       const donor =
-        await donorModel.findOne({
+        await Donor.findOne({
           userId: req.user.id,
         });
 

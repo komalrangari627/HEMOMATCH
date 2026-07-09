@@ -8,15 +8,41 @@ function AccountStep({ formData, setFormData, nextStep }) {
       <h2>Create Account</h2>
 
       <select
+
         value={formData.role}
+
         onChange={(e) =>
-          setFormData({ ...formData, role: e.target.value })
+
+          setFormData({
+
+            ...formData,
+
+            role: e.target.value
+
+          })
+
         }
+
       >
-        <option>Donor</option>
-        <option>Recipient</option>
-        <option>Hospital</option>
-        <option>Blood Bank</option>
+
+        <option value="donor">
+
+          Donor
+
+        </option>
+
+        <option value="hospital">
+
+          Hospital
+
+        </option>
+
+        <option value="bloodbank">
+
+          Blood Bank
+
+        </option>
+
       </select>
 
       <input

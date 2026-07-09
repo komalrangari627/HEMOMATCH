@@ -1,14 +1,14 @@
 import PDFDocument from "pdfkit";
 import fs from "fs";
 
-import { donorModel } from "../Schema/Donor.js";
-import { certificateModel } from "../Schema/Certificate.js";
+import Donor from "../Schema/Donor.js";
+import Certificate from "../Schema/Certificate.js";
 
 export const generateCertificate =
   async (req, res) => {
     try {
       const donor =
-        await donorModel.findById(
+        await Donor.findById(
           req.params.id
         );
 
@@ -64,7 +64,7 @@ export const generateCertificate =
       doc.end();
 
       const certificate =
-        await certificateModel.create({
+        await certificate.create({
           donorId: donor._id,
           donorName:
             donor.name,
@@ -95,7 +95,7 @@ export const getCertificates =
   async (req, res) => {
     try {
       const certificates =
-        await certificateModel.find();
+        await certificate.find();
 
       res.status(200).json({
         success: true,

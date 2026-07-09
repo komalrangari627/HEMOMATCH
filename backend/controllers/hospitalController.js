@@ -1,4 +1,4 @@
-import { hospitalModel } from "../Schema/Hospital.js";
+import Hospital from "../Schema/Hospital.js";
 
 
 // CREATE HOSPITAL
@@ -8,7 +8,7 @@ export const createHospital = async (
 ) => {
   try {
     const hospital =
-      await hospitalModel.create({
+      await hospital.create({
         ...req.body,
         createdBy: req.user.id,
       });
@@ -34,7 +34,7 @@ export const getAllHospitals =
   async (req, res) => {
     try {
       const hospitals =
-        await hospitalModel.find();
+        await Hospital.find();
 
       res.status(200).json({
         success: true,
@@ -57,7 +57,7 @@ export const getHospitalById =
   async (req, res) => {
     try {
       const hospital =
-        await hospitalModel.findById(
+        await hospital.findById(
           req.params.id
         );
 
@@ -88,7 +88,7 @@ export const updateHospital =
   async (req, res) => {
     try {
       const hospital =
-        await hospitalModel.findByIdAndUpdate(
+        await hospital.findByIdAndUpdate(
           req.params.id,
           req.body,
           {
@@ -116,7 +116,7 @@ export const updateHospital =
 export const deleteHospital =
   async (req, res) => {
     try {
-      await hospitalModel.findByIdAndDelete(
+      await Hospital.findByIdAndDelete(
         req.params.id
       );
 
@@ -153,7 +153,7 @@ export const searchHospitals =
         filter.state = state;
 
       const hospitals =
-        await hospitalModel.find(
+        await hospital.find(
           filter
         );
 

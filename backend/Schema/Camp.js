@@ -44,7 +44,7 @@ const campSchema = new mongoose.Schema(
   }
 );
 
-export const campModel = mongoose.model(
+export default mongoose.model(
   "Camp",
   campSchema
 );

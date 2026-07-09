@@ -1,21 +1,5 @@
-import EmergencyRequest from "../models/EmergencyRequest.js";
-import Donor from "../models/Donor.js";
-
-export const createEmergencyRequest = async (req, res) => {
-
-    // Save emergency request...
-
-    req.io.emit("emergency-request", {
-        bloodGroup: req.body.bloodGroup,
-        hospital: req.body.hospital,
-        city: req.body.city,
-        message: "Emergency Blood Required"
-    });
-
-    res.status(201).json({
-        success: true
-    });
-};
+import EmergencyRequest from "../Schema/EmergencyRequest.js";
+import Donor from "../Schema/Donor.js";
 
 export const createEmergencyRequest = async (req, res) => {
   try {

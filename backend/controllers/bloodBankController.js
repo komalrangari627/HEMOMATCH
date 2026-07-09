@@ -1,4 +1,4 @@
-import { bloodBankModel } from "../Schema/BloodBank.js";
+import bloodBank from "../Schema/BloodBank.js";
 
 
 // CREATE BLOOD BANK
@@ -6,7 +6,7 @@ export const createBloodBank =
   async (req, res) => {
     try {
       const bloodBank =
-        await bloodBankModel.create({
+        await bloodBank.create({
           ...req.body,
           createdBy:
             req.user.id,
@@ -33,7 +33,7 @@ export const getAllBloodBanks =
   async (req, res) => {
     try {
       const bloodBanks =
-        await bloodBankModel.find();
+        await bloodBank.find();
 
       res.status(200).json({
         success: true,
@@ -56,7 +56,7 @@ export const getBloodBankById =
   async (req, res) => {
     try {
       const bloodBank =
-        await bloodBankModel.findById(
+        await bloodBank.findById(
           req.params.id
         );
 
@@ -87,7 +87,7 @@ export const updateBloodBank =
   async (req, res) => {
     try {
       const bloodBank =
-        await bloodBankModel.findByIdAndUpdate(
+        await bloodBank.findByIdAndUpdate(
           req.params.id,
           req.body,
           {
@@ -115,7 +115,7 @@ export const updateBloodBank =
 export const deleteBloodBank =
   async (req, res) => {
     try {
-      await bloodBankModel.findByIdAndDelete(
+      await bloodBank.findByIdAndDelete(
         req.params.id
       );
 
@@ -152,7 +152,7 @@ export const searchBloodBanks =
         filter.state = state;
 
       const bloodBanks =
-        await bloodBankModel.find(
+        await bloodBank.find(
           filter
         );
 

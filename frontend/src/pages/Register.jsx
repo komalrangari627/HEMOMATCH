@@ -51,22 +51,49 @@ function Register() {
 
       setLoading(true);
 
-      const res = await axios.post(
-        "http://localhost:5000/api/auth/register",
-        formData
+      const payload = {
+
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone,
+        password: formData.password,
+        role: formData.role.toLowerCase()
+
+      };
+
+      const res = await registerUser(payload);
+
+      localStorage.setItem(
+        "token",
+        res.data.token
       );
 
-      toast.success("Registration successful!");
+      toast.success(
+        res.data.message
+      );
 
-      console.log(res.data);
+      const profile =
+        await getCurrentUser();
 
-    } catch (err) {
+      console.log(profile.data);
+
+      window.location.href = "/dashboard";
+
+    }
+
+    catch (err) {
 
       toast.error(
-        err.response?.data?.message || "Registration failed"
+
+        err.response?.data?.message ||
+
+        "Registration Failed"
+
       );
 
-    } finally {
+    }
+
+    finally {
 
       setLoading(false);
 

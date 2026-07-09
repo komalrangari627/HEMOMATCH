@@ -55,7 +55,7 @@ const donorSchema =
     }
   );
 
-export const donorModel =
+export default  
   mongoose.model(
     "Donor",
     donorSchema

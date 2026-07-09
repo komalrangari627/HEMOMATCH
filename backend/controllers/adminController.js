@@ -1,8 +1,8 @@
-import { donorModel } from "../Schema/Donor.js";
-import { hospitalModel } from "../Schema/Hospital.js";
-import { bloodBankModel } from "../Schema/BloodBank.js";
-import { campModel } from "../Schema/Camp.js";
-import { userModel } from "../Schema/User.js";
+import Donor from "../Schema/Donor.js";
+import  hospital from "../Schema/Hospital.js";
+import  bloodBank from "../Schema/BloodBank.js";
+import  camp from "../Schema/Camp.js";
+import user from "../Schema/User.js";
 
 
 // ==============================
@@ -15,29 +15,29 @@ export const dashboardStats = async (
 ) => {
   try {
     const totalUsers =
-      await userModel.countDocuments();
+      await user.countDocuments();
 
     const totalDonors =
-      await donorModel.countDocuments();
+      await Donor.countDocuments();
 
     const approvedDonors =
-      await donorModel.countDocuments({
+      await Donor.countDocuments({
         approved: true,
       });
 
     const pendingDonors =
-      await donorModel.countDocuments({
+      await Donor.countDocuments({
         approved: false,
       });
 
     const hospitals =
-      await hospitalModel.countDocuments();
+      await hospital.countDocuments();
 
     const bloodBanks =
-      await bloodBankModel.countDocuments();
+      await bloodBank.countDocuments();
 
     const camps =
-      await campModel.countDocuments();
+      await camp.countDocuments();
 
     res.status(200).json({
       success: true,
@@ -68,7 +68,7 @@ export const getAllDonorsAdmin =
   async (req, res) => {
     try {
       const donors =
-        await donorModel
+        await Donor
           .find()
           .sort({ createdAt: -1 });
 
@@ -94,7 +94,7 @@ export const getPendingDonors =
   async (req, res) => {
     try {
       const donors =
-        await donorModel.find({
+        await Donor.find({
           approved: false,
         });
 
@@ -120,7 +120,7 @@ export const approveDonor =
   async (req, res) => {
     try {
       const donor =
-        await donorModel.findById(
+        await Donor.findById(
           req.params.id
         );
 
@@ -160,7 +160,7 @@ export const rejectDonor =
   async (req, res) => {
     try {
       const donor =
-        await donorModel.findById(
+        await Donor.findById(
           req.params.id
         );
 
@@ -198,7 +198,7 @@ export const rejectDonor =
 export const deleteDonorAdmin =
   async (req, res) => {
     try {
-      await donorModel.findByIdAndDelete(
+      await Donor.findByIdAndDelete(
         req.params.id
       );
 
@@ -225,7 +225,7 @@ export const getAllUsers =
   async (req, res) => {
     try {
       const users =
-        await userModel
+        await user
           .find()
           .select("-password");
 
@@ -250,7 +250,7 @@ export const getAllUsers =
 export const deleteUser =
   async (req, res) => {
     try {
-      await userModel.findByIdAndDelete(
+      await user.findByIdAndDelete(
         req.params.id
       );
 

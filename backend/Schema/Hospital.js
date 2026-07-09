@@ -48,7 +48,7 @@ const hospitalSchema =
     }
   );
 
-export const hospitalModel =
+export default
   mongoose.model(
     "Hospital",
     hospitalSchema

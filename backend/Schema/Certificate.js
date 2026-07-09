@@ -28,8 +28,7 @@ const certificateSchema =
     }
   );
 
-export const certificateModel =
-  mongoose.model(
-    "Certificate",
-    certificateSchema
-  );
+export default mongoose.model(
+  "Certificate",
+  certificateSchema
+);
