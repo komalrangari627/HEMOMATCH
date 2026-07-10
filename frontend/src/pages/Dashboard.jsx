@@ -4,13 +4,18 @@ import Statistics from "../components/Dashboard/Statistics";
 import RecentRequests from "../components/Dashboard/RecentRequests";
 import UpcomingCamps from "../components/Dashboard/UpcomingCamps";
 import "./../styles/Dashboard.css";
+
 import DonationChart from "../components/Dashboard/DonationChart";
 import BloodGroupChart from "../components/Dashboard/BloodGroupChart";
 import RequestStatusChart from "../components/Dashboard/RequestStatusChart";
 import ActivityTimeline from "../components/Dashboard/ActivityTimeline";
 import NotificationPanel from "../components/Dashboard/NotificationPanel";
-import {getDashboardStats} from "../services/dashboard";
-import {getNotifications} from "../services/notification";
+
+import { getDashboardStats } from "../services/dashboard";
+import { getNotifications } from "../services/notification";
+
+import BloodInventory from "../components/Dashboard/BloodInventory";
+
 
 function Dashboard() {
 
@@ -26,31 +31,55 @@ function Dashboard() {
 
         <Statistics />
 
+
         <div className="dashboard-grid">
 
           <RecentRequests />
 
           <UpcomingCamps />
+
+
           <div className="dashboard-grid">
+
             <DonationChart />
+
             <BloodGroupChart />
+
           </div>
 
+
+
           <div className="dashboard-grid">
+
             <RequestStatusChart />
+
             <NotificationPanel />
+
           </div>
 
+
+
           <div className="dashboard-grid">
+
             <ActivityTimeline />
+
             <RecentRequests />
+
           </div>
 
+
+
           <div className="dashboard-grid">
+
             <UpcomingCamps />
+
             <BloodInventory />
+
           </div>
+
+
         </div>
+
 
       </div>
 
@@ -59,5 +88,6 @@ function Dashboard() {
   );
 
 }
+
 
 export default Dashboard;

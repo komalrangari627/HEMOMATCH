@@ -16,5 +16,15 @@ API.put("/bloodbanks/stock",data);
 
 
 
-export const searchBlood = (criteria)=>
-API.post("/blood/search",criteria);
+export const searchBlood = async(data)=>{
+
+ const response = await API.get(
+    "/blood/search",
+    {
+      params:data
+    }
+ );
+
+ return response.data;
+
+};

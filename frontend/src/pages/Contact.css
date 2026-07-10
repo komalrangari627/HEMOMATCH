@@ -1,13 +1,9 @@
 :root{
 
 --pink:#dd1cad;
-
 --black:#11020d;
-
 --dark-purple:#440935;
-
 --purple:#770f5d;
-
 --magenta:#aa1685;
 
 }
@@ -21,19 +17,29 @@
 
 min-height:100vh;
 
+
+
 background:
 
 linear-gradient(
 135deg,
-#fff,
+#ffffff,
 #f8d9f0
 );
 
 
-padding:40px;
+
+
+/* space for fixed navbar */
+
+padding:110px 40px 40px;
+
 
 
 }
+
+
+
 
 
 
@@ -41,9 +47,14 @@ padding:40px;
 .contact-container{
 
 
+width:100%;
+
+
 max-width:1200px;
 
+
 margin:auto;
+
 
 
 }
@@ -53,7 +64,19 @@ margin:auto;
 
 
 
+
+
+/* TOP CENTER HEADER CARD */
+
+
 .contact-header{
+
+
+max-width:900px;
+
+
+margin:20px auto 0;
+
 
 
 background:
@@ -65,16 +88,36 @@ var(--pink)
 );
 
 
-padding:50px;
+
+
+padding:55px 50px;
+
 
 
 border-radius:30px;
 
 
+
 color:white;
 
 
+
 text-align:center;
+
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
 
 
 box-shadow:
@@ -83,7 +126,9 @@ box-shadow:
 rgba(221,28,173,.3);
 
 
+
 }
+
 
 
 
@@ -92,10 +137,17 @@ rgba(221,28,173,.3);
 .contact-header h1{
 
 
-font-size:42px;
+font-size:45px;
+
+
+margin-bottom:15px;
+
+
+font-weight:700;
 
 
 }
+
 
 
 
@@ -103,10 +155,13 @@ font-size:42px;
 .contact-header p{
 
 
+max-width:700px;
+
+
 font-size:18px;
 
 
-line-height:1.6;
+line-height:1.8;
 
 
 }
@@ -115,29 +170,44 @@ line-height:1.6;
 
 
 
+
+
+
+
+/* CONTACT CARDS SECTION */
 
 
 .contact-grid{
 
 
-margin-top:40px;
+margin-top:45px;
 
 
-display:grid;
+
+display:flex;
 
 
-grid-template-columns:
 
-repeat(
-auto-fit,
-minmax(280px,1fr)
-);
+justify-content:center;
+
+
+
+align-items:center;
+
+
+
+flex-wrap:wrap;
+
 
 
 gap:25px;
 
 
+
 }
+
+
+
 
 
 
@@ -149,13 +219,26 @@ gap:25px;
 background:white;
 
 
-padding:30px;
+
+width:320px;
+
+
+
+min-height:250px;
+
+
+
+padding:35px;
+
 
 
 border-radius:25px;
 
 
+
 text-align:center;
+
+
 
 
 border:
@@ -163,7 +246,28 @@ border:
 2px solid #f0b5df;
 
 
+
+
+
 transition:.3s;
+
+
+
+
+display:flex;
+
+
+
+flex-direction:column;
+
+
+
+justify-content:center;
+
+
+
+align-items:center;
+
 
 
 }
@@ -180,13 +284,17 @@ transform:
 translateY(-10px);
 
 
+
 box-shadow:
 
 0 20px 40px
 rgba(170,22,133,.25);
 
 
+
 }
+
+
 
 
 
@@ -199,33 +307,45 @@ rgba(170,22,133,.25);
 font-size:45px;
 
 
+
 background:
 
 #fbe4f5;
 
 
+
+
 height:80px;
+
 
 
 width:80px;
 
 
+
 display:flex;
+
 
 
 align-items:center;
 
 
+
 justify-content:center;
+
 
 
 border-radius:50%;
 
 
-margin:auto;
+
+margin-bottom:20px;
+
 
 
 }
+
+
 
 
 
@@ -239,7 +359,14 @@ color:
 var(--purple);
 
 
+
+font-size:26px;
+
+
+
 }
+
+
 
 
 
@@ -251,10 +378,14 @@ color:
 var(--pink);
 
 
+
 font-size:18px;
 
 
+
 }
+
+
 
 
 
@@ -264,7 +395,13 @@ font-size:18px;
 color:#555;
 
 
-line-height:1.6;
+
+line-height:1.7;
+
+
+
+font-size:16px;
+
 
 
 }
@@ -275,10 +412,17 @@ line-height:1.6;
 
 
 
+
+
+/* EMERGENCY SECTION */
+
+
 .emergency-card{
 
 
-margin-top:40px;
+margin-top:45px;
+
+
 
 
 background:
@@ -290,16 +434,33 @@ var(--purple)
 );
 
 
+
+
 color:white;
 
 
-padding:40px;
+
+
+padding:45px;
+
+
 
 
 border-radius:30px;
 
 
+
+
 text-align:center;
+
+
+
+
+box-shadow:
+
+0 20px 40px
+rgba(68,9,53,.3);
+
 
 
 }
@@ -311,7 +472,7 @@ text-align:center;
 .emergency-card h2{
 
 
-font-size:30px;
+font-size:32px;
 
 
 }
@@ -326,9 +487,6 @@ font-size:30px;
 line-height:1.7;
 
 
-font-size:17px;
-
-
 }
 
 
@@ -341,13 +499,21 @@ font-size:17px;
 margin-top:20px;
 
 
-padding:15px 30px;
+
+
+padding:15px 35px;
+
+
 
 
 border:none;
 
 
+
+
 border-radius:15px;
+
+
 
 
 background:
@@ -355,16 +521,30 @@ background:
 var(--pink);
 
 
+
+
 color:white;
+
+
 
 
 font-weight:bold;
 
 
+
+
 cursor:pointer;
 
 
+
+
+transition:.3s;
+
+
+
 }
+
+
 
 
 
@@ -378,7 +558,18 @@ background:
 var(--magenta);
 
 
+
+transform:
+
+scale(1.05);
+
+
+
 }
+
+
+
+
 
 
 
@@ -387,17 +578,95 @@ var(--magenta);
 @media(max-width:600px){
 
 
+
 .contact-page{
 
-padding:15px;
+
+padding:90px 15px 30px;
+
+
 
 }
 
 
 
+
+.contact-header{
+
+
+padding:35px 20px;
+
+
+
+border-radius:20px;
+
+
+
+}
+
+
+
+
 .contact-header h1{
 
+
 font-size:30px;
+
+
+
+}
+
+
+
+
+
+.contact-header p{
+
+
+font-size:16px;
+
+
+
+}
+
+
+
+
+.contact-card{
+
+
+width:100%;
+
+
+
+padding:25px;
+
+
+
+}
+
+
+
+
+.emergency-card{
+
+
+padding:30px 20px;
+
+
+
+}
+
+
+
+
+
+.emergency-card h2{
+
+
+font-size:25px;
+
+
 
 }
 

@@ -20,6 +20,30 @@ export function AuthProvider({ children }) {
 
 
 
+  // Normalize user data
+  const formatUser = (userData) => {
+
+    if (!userData) return null;
+
+
+    return {
+
+      ...userData,
+
+
+      name:
+        userData.name ||
+        userData.fullName ||
+        userData.username ||
+        userData.email?.split("@")[0] ||
+        "User"
+
+    };
+
+  };
+
+
+
 
 
   // Restore login session
@@ -27,31 +51,51 @@ export function AuthProvider({ children }) {
   useEffect(() => {
 
 
-    const savedToken =
-      localStorage.getItem("token");
+    try {
+
+      const savedToken =
+        localStorage.getItem("token");
 
 
-    const savedUser =
-      localStorage.getItem("user");
-
-
-
-    if(savedToken){
-
-      setToken(savedToken);
-
-    }
+      const savedUser =
+        localStorage.getItem("user");
 
 
 
-    if(savedUser){
+      if (savedToken) {
 
-      setUser(
-        JSON.parse(savedUser)
+        setToken(savedToken);
+
+      }
+
+
+
+      if (savedUser) {
+
+        const parsedUser =
+          JSON.parse(savedUser);
+
+
+        setUser(
+          formatUser(parsedUser)
+        );
+
+      }
+
+
+    } catch (error) {
+
+      console.error(
+        "Auth restore error:",
+        error
       );
 
-    }
 
+      localStorage.removeItem("user");
+
+      localStorage.removeItem("token");
+
+    }
 
 
     setLoading(false);
@@ -65,11 +109,17 @@ export function AuthProvider({ children }) {
 
 
 
-
-
   // Login
 
-  const login = (userData, jwtToken) => {
+  const login = (
+    userData,
+    jwtToken
+  ) => {
+
+
+    const formattedUser =
+      formatUser(userData);
+
 
 
     localStorage.setItem(
@@ -80,14 +130,50 @@ export function AuthProvider({ children }) {
 
     localStorage.setItem(
       "user",
-      JSON.stringify(userData)
+      JSON.stringify(formattedUser)
     );
 
 
 
     setToken(jwtToken);
 
-    setUser(userData);
+
+    setUser(formattedUser);
+
+
+  };
+
+
+
+
+
+
+
+
+
+  // Update user profile
+
+  const updateUser = (updatedData) => {
+
+
+    const updatedUser =
+      formatUser({
+
+        ...user,
+
+        ...updatedData
+
+      });
+
+
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify(updatedUser)
+    );
+
+
+    setUser(updatedUser);
 
 
   };
@@ -136,11 +222,19 @@ export function AuthProvider({ children }) {
     <AuthContext.Provider
 
       value={{
+
         user,
+
         token,
+
         login,
+
         logout,
+
+        updateUser,
+
         loading
+
       }}
 
     >
@@ -150,6 +244,5 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
 
   );
-
 
 }

@@ -18,552 +18,691 @@ const BLOOD_GROUPS = [
 ];
 
 
+
+const inventoryKey = {
+
+  "A+": "A_Positive",
+  "A-": "A_Negative",
+
+  "B+": "B_Positive",
+  "B-": "B_Negative",
+
+  "AB+": "AB_Positive",
+  "AB-": "AB_Negative",
+
+  "O+": "O_Positive",
+  "O-": "O_Negative"
+
+};
+
+
+
+
 const FindBlood = () => {
 
 
-  const [bloodGroup, setBloodGroup] = useState("");
-  const [location, setLocation] = useState("");
-  const [urgent, setUrgent] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState([]);
+const [bloodGroup,setBloodGroup]=useState("");
 
-  const [showEmergency, setShowEmergency] = useState(false);
+const [city,setCity]=useState("");
 
+const [hospital,setHospital]=useState("");
 
-  const [emergencyData, setEmergencyData] = useState({
+const [urgent,setUrgent]=useState(false);
 
-    patientName: "",
-    bloodGroup: "",
-    units: 1,
-    hospital: "",
-    city: "",
-    contact: ""
+const [loading,setLoading]=useState(false);
 
-  });
+const [results,setResults]=useState([]);
 
 
+const [showEmergency,setShowEmergency]=useState(false);
 
-  useEffect(() => {
 
 
-    socket.on(
-      "emergency-request",
-      (data) => {
+const [emergencyData,setEmergencyData]=useState({
 
-        toast.error(
-          `${data.bloodGroup} blood required at ${data.hospital}`
-        );
+patientName:"",
+bloodGroup:"",
+units:1,
+hospital:"",
+city:"",
+contact:""
 
-      }
-    );
+});
 
 
-    return () => {
 
-      socket.off("emergency-request");
 
-    };
 
+useEffect(()=>{
 
-  }, []);
 
+socket.on(
+"emergency-request",
+(data)=>{
 
 
+toast.error(
+`${data.bloodGroup} blood required at ${data.hospital}`
+);
 
-  const handleSearch = async () => {
 
+});
 
-    setLoading(true);
 
+return()=>{
 
-    try {
+socket.off(
+"emergency-request"
+);
 
+};
 
-      const data = await searchBlood({
 
-        bloodGroup,
-        location,
-        urgent
+},[]);
 
-      });
 
 
-      setResults(data || []);
 
 
-    }
-    catch (err) {
 
-      console.log(err);
-      setResults([]);
 
-    }
+const handleSearch=async()=>{
 
 
-    setLoading(false);
+setLoading(true);
 
 
-  };
+try{
 
 
+const data=await searchBlood({
 
+bloodGroup,
 
+location:city,
 
-  const submitEmergency = async () => {
+hospital,
 
+urgent
 
-    try {
+});
 
 
-      await createEmergencyRequest(emergencyData);
+setResults(data || []);
 
 
-      toast.success(
-        "Emergency alert sent successfully"
-      );
 
+}
 
-      setShowEmergency(false);
+catch(error){
 
 
-    }
-    catch (err) {
+console.log(error);
 
-      toast.error(
-        "Emergency request failed"
-      );
 
-    }
+toast.error(
+"Blood search failed"
+);
 
-  };
 
+setResults([]);
 
 
-  return (
+}
 
-    <div className="findblood-wrapper">
 
+setLoading(false);
 
-      <div className="findblood-card">
 
+};
 
-        <header className="findblood-header">
 
-          <h1>
-            🩸 Find Blood Donors
-          </h1>
 
-          <p>
-            Find verified blood donors instantly near you
-          </p>
 
-        </header>
 
 
 
 
+const submitEmergency=async()=>{
 
-        <div className="blood-chips">
 
-          {
-            BLOOD_GROUPS.map(bg => (
+try{
 
-              <button
 
-                key={bg}
+await createEmergencyRequest(
+emergencyData
+);
 
-                className={
-                  bloodGroup === bg
-                    ? "chip active"
-                    : "chip"
-                }
 
-                onClick={() => setBloodGroup(bg)}
+toast.success(
+"Emergency alert sent successfully"
+);
 
-              >
 
-                {bg}
+setShowEmergency(false);
 
-              </button>
 
-            ))
-          }
 
+}
 
-        </div>
+catch(error){
 
 
+console.log(error);
 
 
+toast.error(
+"Emergency request failed"
+);
 
-        <div className="search-panel">
 
+}
 
-          <button
 
-            className="emergency-btn"
+};
 
-            onClick={() => setShowEmergency(true)}
 
-          >
 
-            🚨 Emergency Request
 
-          </button>
 
 
 
-          <input
+return (
 
-            placeholder="Enter city / hospital"
+<div className="findblood-wrapper">
 
-            value={location}
 
-            onChange={
-              e => setLocation(e.target.value)
-            }
+<div className="findblood-card">
 
-          />
 
 
+<header className="findblood-header">
 
-          <label className="urgent-toggle">
+<h1>
+🩸 Find Blood
+</h1>
 
-            <input
+<p>
+Search blood availability from blood banks
+</p>
 
-              type="checkbox"
+</header>
 
-              checked={urgent}
 
-              onChange={
-                e => setUrgent(e.target.checked)
-              }
 
-            />
 
-            Urgent Only
 
-          </label>
 
+<div className="blood-chips">
 
 
-          <button
+{
+BLOOD_GROUPS.map(bg=>(
 
-            className="search-btn"
+<button
 
-            onClick={handleSearch}
+key={bg}
 
-          >
+className={
+bloodGroup===bg
+?
+"chip active"
+:
+"chip"
+}
 
-            {
-              loading
-                ?
-                "Searching..."
-                :
-                "Search Donors"
-            }
+onClick={()=>setBloodGroup(bg)}
 
+>
 
-          </button>
+{bg}
 
+</button>
 
-        </div>
+))
+}
 
 
+</div>
 
 
 
 
-        <div className="results-grid">
 
 
-          {
-            loading &&
 
-            <p className="info">
-              Searching donors...
-            </p>
 
-          }
+<div className="search-panel">
 
 
+<button
 
-          {
-            !loading &&
-            results.length === 0 &&
+className="emergency-btn"
 
-            <p className="info">
-              No donors found
-            </p>
+onClick={()=>setShowEmergency(true)}
 
-          }
+>
 
+🚨 Emergency Request
 
+</button>
 
 
 
-          {
-            results.map(item => (
 
 
-              <div
+<input
 
-                className="blood-card"
+placeholder="Enter City"
 
-                key={item._id}
+value={city}
 
-              >
+onChange={
+e=>setCity(e.target.value)
+}
 
+/>
 
-                <div className="blood-type">
 
-                  {item.bloodGroup}
 
-                </div>
 
+<input
 
+placeholder="Enter Hospital / Blood Bank"
 
-                <p>
-                  <b>Location:</b> {item.location}
-                </p>
+value={hospital}
 
+onChange={
+e=>setHospital(e.target.value)
+}
 
+/>
 
-                <p>
 
-                  <b>Status:</b>
 
-                  <span
 
-                    className={
-                      item.available
-                        ?
-                        "available"
-                        :
-                        "unavailable"
-                    }
 
-                  >
 
-                    {
-                      item.available
-                        ?
-                        " Available"
-                        :
-                        " Not Available"
-                    }
+<label className="urgent-toggle">
 
-                  </span>
+<input
 
+type="checkbox"
 
-                </p>
+checked={urgent}
 
+onChange={
+e=>setUrgent(e.target.checked)
+}
 
+/>
 
-                {
-                  item.urgent &&
+Urgent Only
 
-                  <span className="urgent-badge">
+</label>
 
-                    🚨 Urgent
 
-                  </span>
 
-                }
 
 
+<button
 
-                <button className="request-btn">
+className="search-btn"
 
-                  Request Blood
+onClick={handleSearch}
 
-                </button>
+>
 
+{
+loading
+?
+"Searching..."
+:
+"Search Blood"
+}
 
 
-              </div>
+</button>
 
 
-            ))
 
-          }
+</div>
 
 
 
-        </div>
 
 
-      </div>
 
 
 
 
+<div className="results-grid">
 
-      {
-        showEmergency &&
 
 
-        <div className="emergency-modal">
+{
+loading &&
 
+<p className="info">
+Searching...
+</p>
 
-          <div className="emergency-card">
+}
 
 
-            <h2>
-              🚨 Emergency Blood Request
-            </h2>
 
 
 
-            <input
+{
+!loading &&
+results.length===0 &&
 
-              placeholder="Patient Name"
+<p className="info">
+No blood bank found
+</p>
 
-              onChange={
-                e => setEmergencyData({
-                  ...emergencyData,
-                  patientName: e.target.value
-                })
-              }
+}
 
-            />
 
 
 
-            <select
 
-              onChange={
-                e => setEmergencyData({
-                  ...emergencyData,
-                  bloodGroup: e.target.value
-                })
-              }
 
-            >
 
 
-              {
-                BLOOD_GROUPS.map(bg => (
+{
+results.map(item=>(
 
-                  <option key={bg}>
-                    {bg}
-                  </option>
 
-                ))
-              }
+<div
 
+className="blood-card"
 
-            </select>
+key={item._id}
 
+>
 
 
 
-            <input
+<h3>
+🏥 {item.name}
+</h3>
 
-              type="number"
 
-              placeholder="Units Required"
 
-              onChange={
-                e => setEmergencyData({
-                  ...emergencyData,
-                  units: e.target.value
-                })
-              }
+<p>
+<b>City:</b>
+{item.city}
+</p>
 
-            />
 
 
+<p>
+<b>Address:</b>
+{item.address}
+</p>
 
-            <input
 
-              placeholder="Hospital"
 
-              onChange={
-                e => setEmergencyData({
-                  ...emergencyData,
-                  hospital: e.target.value
-                })
-              }
+<p>
+<b>Phone:</b>
+{item.phone}
+</p>
 
-            />
 
 
 
-            <input
+{
+bloodGroup &&
 
-              placeholder="City"
+<p>
 
-              onChange={
-                e => setEmergencyData({
-                  ...emergencyData,
-                  city: e.target.value
-                })
-              }
+<b>
+{bloodGroup}
+</b>
 
-            />
+:
+{
+item.inventory[
+inventoryKey[bloodGroup]
+]
+}
 
+ Units
 
+</p>
 
-            <input
+}
 
-              placeholder="Contact"
 
-              onChange={
-                e => setEmergencyData({
-                  ...emergencyData,
-                  contact: e.target.value
-                })
-              }
 
-            />
 
 
+<button className="request-btn">
 
-            <button
+Request Blood
 
-              className="send-btn"
+</button>
 
-              onClick={submitEmergency}
 
-            >
 
-              Send Alert
+</div>
 
-            </button>
 
+))
 
+}
 
 
-            <button
 
-              className="cancel-btn"
+</div>
 
-              onClick={
-                () => setShowEmergency(false)
-              }
 
-            >
 
-              Cancel
+</div>
 
-            </button>
 
 
 
-          </div>
 
 
-        </div>
 
 
-      }
 
+{
+showEmergency &&
 
-    </div>
 
+<div className="emergency-modal">
 
-  );
+
+<div className="emergency-card">
+
+
+<h2>
+🚨 Emergency Blood Request
+</h2>
+
+
+
+
+<input
+
+placeholder="Patient Name"
+
+onChange={
+e=>setEmergencyData({
+
+...emergencyData,
+
+patientName:e.target.value
+
+})
+}
+
+/>
+
+
+
+
+<select
+
+onChange={
+e=>setEmergencyData({
+
+...emergencyData,
+
+bloodGroup:e.target.value
+
+})
+}
+
+>
+
+
+{
+BLOOD_GROUPS.map(bg=>(
+
+<option key={bg}>
+{bg}
+</option>
+
+))
+}
+
+
+</select>
+
+
+
+
+
+
+<input
+
+type="number"
+
+placeholder="Units Required"
+
+onChange={
+e=>setEmergencyData({
+
+...emergencyData,
+
+units:e.target.value
+
+})
+}
+
+/>
+
+
+
+
+
+
+<input
+
+placeholder="Hospital"
+
+onChange={
+e=>setEmergencyData({
+
+...emergencyData,
+
+hospital:e.target.value
+
+})
+}
+
+/>
+
+
+
+
+<input
+
+placeholder="City"
+
+onChange={
+e=>setEmergencyData({
+
+...emergencyData,
+
+city:e.target.value
+
+})
+}
+
+/>
+
+
+
+
+<input
+
+placeholder="Contact"
+
+onChange={
+e=>setEmergencyData({
+
+...emergencyData,
+
+contact:e.target.value
+
+})
+}
+
+/>
+
+
+
+
+
+<button
+
+className="send-btn"
+
+onClick={submitEmergency}
+
+>
+
+Send Alert
+
+</button>
+
+
+
+
+<button
+
+className="cancel-btn"
+
+onClick={
+()=>setShowEmergency(false)
+}
+
+>
+
+Cancel
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+}
+
+
+
+</div>
+
+);
 
 
 };

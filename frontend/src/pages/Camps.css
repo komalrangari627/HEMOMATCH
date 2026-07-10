@@ -1,13 +1,9 @@
 :root{
 
 --bg:#fff0f3;
-
 --light:#ffccd5;
-
 --pink:#ffb3c1;
-
 --rose:#ff8fa3;
-
 --blood:#ff4d6d;
 
 }
@@ -15,7 +11,6 @@
 
 
 .camp-page{
-
 
 min-height:100vh;
 
@@ -31,8 +26,16 @@ white
 padding:40px;
 
 
-}
+/* center container */
 
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+
+}
 
 
 
@@ -40,15 +43,19 @@ padding:40px;
 .camp-container{
 
 
+width:100%;
+
 max-width:1200px;
 
-margin:auto;
 
 background:white;
 
+
 padding:35px;
 
+
 border-radius:30px;
+
 
 
 box-shadow:
@@ -58,9 +65,6 @@ rgba(255,77,109,.25);
 
 
 }
-
-
-
 
 
 
@@ -131,14 +135,21 @@ flex:1;
 
 padding:14px;
 
+
 border-radius:12px;
+
 
 border:
 
 1px solid var(--rose);
 
 
+outline:none;
+
+
 }
+
+
 
 
 
@@ -152,11 +163,15 @@ var(--blood);
 
 color:white;
 
+
 border:none;
+
 
 padding:14px 25px;
 
+
 border-radius:12px;
+
 
 cursor:pointer;
 
@@ -171,6 +186,7 @@ cursor:pointer;
 
 
 display:grid;
+
 
 grid-template-columns:
 
@@ -193,6 +209,7 @@ gap:25px;
 
 
 background:white;
+
 
 padding:25px;
 
@@ -233,8 +250,6 @@ rgba(255,143,163,.4);
 
 
 
-
-
 .camp-icon{
 
 
@@ -245,7 +260,9 @@ width:75px;
 
 display:flex;
 
+
 align-items:center;
+
 
 justify-content:center;
 
@@ -261,6 +278,9 @@ var(--bg);
 border-radius:50%;
 
 
+margin:auto;
+
+
 }
 
 
@@ -273,6 +293,9 @@ border-radius:50%;
 color:#c9184a;
 
 
+text-align:center;
+
+
 }
 
 
@@ -283,6 +306,7 @@ color:#c9184a;
 
 
 color:#555;
+
 
 line-height:1.5;
 
@@ -303,6 +327,7 @@ var(--bg);
 
 padding:12px;
 
+
 border-radius:12px;
 
 
@@ -314,10 +339,12 @@ color:#555;
 
 
 
+
 .register-btn{
 
 
 width:100%;
+
 
 padding:13px;
 
@@ -361,8 +388,6 @@ color:#777;
 
 
 }
-
-
 
 
 

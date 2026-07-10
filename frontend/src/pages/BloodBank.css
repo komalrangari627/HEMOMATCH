@@ -1,13 +1,9 @@
 :root{
 
 --bg:#ffe5ec;
-
 --light:#ffc2d1;
-
 --pink:#ffb3c6;
-
 --rose:#ff8fab;
-
 --blood:#fb6f92;
 
 }
@@ -20,7 +16,6 @@
 min-height:100vh;
 
 background:
-
 linear-gradient(
 135deg,
 var(--bg),
@@ -29,6 +24,13 @@ white
 
 
 padding:40px;
+
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 
 }
@@ -40,15 +42,19 @@ padding:40px;
 .bloodbank-container{
 
 
+width:100%;
+
 max-width:1200px;
 
-margin:auto;
 
 background:white;
 
+
 border-radius:30px;
 
+
 padding:35px;
+
 
 
 box-shadow:
@@ -57,10 +63,8 @@ box-shadow:
 rgba(251,111,146,.25);
 
 
+
 }
-
-
-
 
 
 
@@ -82,6 +86,8 @@ font-size:40px;
 
 color:#c9184a;
 
+margin-bottom:10px;
+
 
 }
 
@@ -92,8 +98,11 @@ color:#c9184a;
 
 color:#777;
 
+font-size:16px;
+
 
 }
+
 
 
 
@@ -105,15 +114,26 @@ color:#777;
 
 margin:30px 0;
 
+
 display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
 
 gap:15px;
 
+
 padding:20px;
+
 
 background:
 
 var(--bg);
+
 
 border-radius:20px;
 
@@ -122,19 +142,33 @@ border-radius:20px;
 
 
 
+
+
 .blood-search input{
 
 
-flex:1;
+width:100%;
+
 
 padding:14px;
 
+
 border-radius:12px;
+
 
 border:1px solid var(--rose);
 
 
+outline:none;
+
+
+font-size:16px;
+
+
 }
+
+
+
 
 
 
@@ -145,20 +179,30 @@ background:
 
 var(--blood);
 
+
 color:white;
+
 
 border:none;
 
+
 padding:14px 25px;
+
 
 border-radius:12px;
 
+
 cursor:pointer;
+
 
 font-weight:bold;
 
 
+white-space:nowrap;
+
+
 }
+
 
 
 
@@ -170,12 +214,14 @@ font-weight:bold;
 
 display:grid;
 
+
 grid-template-columns:
 
 repeat(
 auto-fit,
 minmax(280px,1fr)
 );
+
 
 gap:25px;
 
@@ -186,21 +232,23 @@ gap:25px;
 
 
 
-
-
 .bloodbank-card{
 
 
 padding:25px;
 
+
 border-radius:25px;
+
 
 border:
 
 2px solid var(--light);
 
 
+
 background:white;
+
 
 transition:.3s;
 
@@ -218,13 +266,17 @@ transform:
 translateY(-8px);
 
 
+
 box-shadow:
 
 0 15px 30px
 rgba(255,143,171,.4);
 
 
+
 }
+
+
 
 
 
@@ -235,19 +287,25 @@ rgba(255,143,171,.4);
 
 font-size:45px;
 
+
 background:
 
 var(--bg);
 
 
+
 height:75px;
+
 
 width:75px;
 
 
+
 display:flex;
 
+
 justify-content:center;
+
 
 align-items:center;
 
@@ -255,7 +313,13 @@ align-items:center;
 border-radius:50%;
 
 
+margin:auto;
+
+
 }
+
+
+
 
 
 
@@ -265,9 +329,10 @@ border-radius:50%;
 
 color:#c9184a;
 
+text-align:center;
+
 
 }
-
 
 
 
@@ -279,7 +344,9 @@ color:#c9184a;
 
 margin-top:20px;
 
+
 padding:15px;
+
 
 background:
 
@@ -288,10 +355,13 @@ var(--bg);
 
 border-radius:15px;
 
+
 text-align:center;
 
 
 }
+
+
 
 
 
@@ -300,7 +370,9 @@ text-align:center;
 
 font-size:22px;
 
+
 font-weight:bold;
+
 
 color:#c9184a;
 
@@ -311,14 +383,18 @@ color:#c9184a;
 
 
 
+
 .view-btn{
 
 
 margin-top:20px;
 
+
 width:100%;
 
+
 padding:12px;
+
 
 
 background:
@@ -326,11 +402,15 @@ background:
 var(--blood);
 
 
+
 border:none;
+
 
 color:white;
 
+
 border-radius:12px;
+
 
 cursor:pointer;
 
@@ -341,25 +421,30 @@ cursor:pointer;
 
 
 
-
-
 .inventory-modal{
 
 
 position:fixed;
 
+
 inset:0;
+
 
 background:
 
 rgba(0,0,0,.45);
 
 
+
 display:flex;
+
 
 justify-content:center;
 
+
 align-items:center;
+
+
 
 z-index:1000;
 
@@ -369,14 +454,21 @@ z-index:1000;
 
 
 
+
 .inventory-card{
 
 
 background:white;
 
+
 width:450px;
 
+
+max-width:90%;
+
+
 padding:30px;
+
 
 border-radius:25px;
 
@@ -392,9 +484,11 @@ border-radius:25px;
 
 display:grid;
 
+
 grid-template-columns:
 
 repeat(2,1fr);
+
 
 gap:15px;
 
@@ -410,14 +504,18 @@ gap:15px;
 
 padding:15px;
 
+
 background:
 
 var(--bg);
 
+
 border-radius:12px;
 
 
+
 display:flex;
+
 
 justify-content:space-between;
 
@@ -436,20 +534,27 @@ color:#c9184a;
 
 margin-top:20px;
 
+
 width:100%;
+
 
 padding:12px;
 
+
 background:#c9184a;
+
 
 color:white;
 
+
 border:none;
+
 
 border-radius:12px;
 
 
 }
+
 
 
 
@@ -461,6 +566,7 @@ border-radius:12px;
 
 text-align:center;
 
+
 color:#777;
 
 
@@ -469,13 +575,15 @@ color:#777;
 
 
 
-
 @media(max-width:600px){
+
 
 
 .bloodbank-page{
 
+
 padding:15px;
+
 
 }
 
@@ -483,7 +591,29 @@ padding:15px;
 
 .bloodbank-container{
 
+
 padding:20px;
+
+
+}
+
+
+
+.blood-search{
+
+
+flex-direction:column;
+
+
+}
+
+
+
+.blood-search button{
+
+
+width:100%;
+
 
 }
 
@@ -491,7 +621,9 @@ padding:20px;
 
 .bloodbank-header h1{
 
+
 font-size:28px;
+
 
 }
 

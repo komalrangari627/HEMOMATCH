@@ -22,6 +22,12 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import MainLayout from "./layouts/MainLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
+import Profile from "./pages/Profile";
+import Requests from "./pages/Requests";
+import History from "./pages/History";
+import Settings from "./pages/Settings";
+
+import Logout from "./pages/Logout";
 
 function App() {
   return (
@@ -60,7 +66,38 @@ function App() {
         <Route path="/admin-dashboard" element={<Admin />} />
       </Route>
 
-    </Routes>
+  
+    <Route 
+path="/profile" 
+element={<Profile/>}
+/>
+
+
+<Route 
+path="/requests" 
+element={<Requests/>}
+/>
+
+
+<Route 
+path="/history" 
+element={<History/>}
+/>
+
+
+<Route 
+path="/settings" 
+element={<Settings/>}
+/>
+
+
+<Route 
+path="/logout" 
+element={<Logout/>}
+/>
+
+
+</Routes>
   );
 }
 

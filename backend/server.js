@@ -14,7 +14,7 @@ import bloodBankRoutes from "./routes/bloodBankRoutes.js";
 import campRoutes from "./routes/campRoutes.js";
 import certificateRoutes from "./routes/certificateRoutes.js";
 import emergencyRoutes from "./routes/emergencyRoutes.js";
-
+import bloodRoutes from "./routes/bloodRoutes.js";
 
 dotenv.config();
 
@@ -23,7 +23,6 @@ connectDB();
 
 
 const app = express();
-
 
 // Middleware
 app.use(
@@ -140,6 +139,10 @@ app.use(
     certificateRoutes
 );
 
+app.use(
+ "/api/blood",
+ bloodRoutes
+);
 
 // Test Route
 app.get("/", (req, res) => {
