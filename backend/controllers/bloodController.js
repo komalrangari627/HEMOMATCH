@@ -1,4 +1,4 @@
-import BloodBank from "../models/BloodBank.js";
+import BloodBank from "../Schema/BloodBank.js";
 
 
 

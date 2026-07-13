@@ -16,154 +16,493 @@ import certificateRoutes from "./routes/certificateRoutes.js";
 import emergencyRoutes from "./routes/emergencyRoutes.js";
 import bloodRoutes from "./routes/bloodRoutes.js";
 
+
 dotenv.config();
 
-// Database Connection
+
+// ===============================
+// DATABASE CONNECTION
+// ===============================
+
 connectDB();
+
 
 
 const app = express();
 
-// Middleware
+
+
+
+// ===============================
+// CORS CONFIGURATION
+// ===============================
+
+
+const allowedOrigins = [
+
+    "http://localhost:5173",
+
+    "http://localhost:5174",
+
+    process.env.FRONTEND_URL
+
+];
+
+
+
+
 app.use(
+
     cors({
-        origin: "http://localhost:5173",
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        credentials: true,
+
+        origin: (origin, callback) => {
+
+
+            // Allow Postman / Thunder Client / Server requests
+
+            if(!origin){
+
+                return callback(null,true);
+
+            }
+
+
+
+            if(
+                allowedOrigins.includes(origin)
+            ){
+
+                return callback(null,true);
+
+            }
+
+
+
+            return callback(
+                new Error(
+                    "Not allowed by CORS"
+                )
+            );
+
+
+        },
+
+
+        methods:[
+
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE",
+            "PATCH"
+
+        ],
+
+
+        credentials:true
+
+
     })
+
 );
+
+
+
 
 app.use(express.json());
 
 
-// Create HTTP Server
+
+
+// ===============================
+// CREATE HTTP SERVER
+// ===============================
+
+
 const server = http.createServer(app);
 
 
-// Socket.IO Setup
-const io = new Server(server, {
-    cors: {
-        origin: "http://localhost:5173",
-        methods: ["GET", "POST"],
-        credentials: true,
-    },
+
+
+// ===============================
+// SOCKET.IO SETUP
+// ===============================
+
+
+const io = new Server(
+
+    server,
+
+    {
+
+        cors:{
+
+
+            origin:allowedOrigins,
+
+
+            methods:[
+
+                "GET",
+                "POST"
+
+            ],
+
+
+            credentials:true
+
+
+        }
+
+
+    }
+
+);
+
+
+
+
+
+// ===============================
+// SOCKET CONNECTION
+// ===============================
+
+
+io.on(
+"connection",
+
+(socket)=>{
+
+
+console.log(
+"🟢 User Connected:",
+socket.id
+);
+
+
+
+
+
+// Join User Room
+
+socket.on(
+
+"joinRoom",
+
+(userId)=>{
+
+
+socket.join(userId);
+
+
+
+console.log(
+
+`User ${userId} joined room`
+
+);
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+// Blood Request Room
+
+socket.on(
+
+"joinRequestRoom",
+
+(roomId)=>{
+
+
+socket.join(roomId);
+
+
+
+console.log(
+
+`Joined request room ${roomId}`
+
+);
+
+
+}
+
+);
+
+
+
+
+
+
+
+
+socket.on(
+
+"disconnect",
+
+()=>{
+
+
+console.log(
+
+"🔴 User Disconnected:",
+
+socket.id
+
+);
+
+
+}
+
+);
+
+
+
+}
+
+);
+
+
+
+
+
+
+
+// ===============================
+// MAKE SOCKET AVAILABLE
+// CONTROLLERS
+// ===============================
+
+
+app.use(
+
+(req,res,next)=>{
+
+
+req.io = io;
+
+
+next();
+
+
+}
+
+);
+
+
+
+
+
+
+
+// ===============================
+// API ROUTES
+// ===============================
+
+
+
+app.use(
+
+"/api/emergency",
+
+emergencyRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/auth",
+
+authRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/donors",
+
+donorRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/admin",
+
+adminRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/hospitals",
+
+hospitalRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/bloodbanks",
+
+bloodBankRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/camps",
+
+campRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/certificates",
+
+certificateRoutes
+
+);
+
+
+
+
+app.use(
+
+"/api/blood",
+
+bloodRoutes
+
+);
+
+
+
+
+
+
+
+
+// ===============================
+// TEST ROUTE
+// ===============================
+
+
+app.get(
+
+"/",
+
+(req,res)=>{
+
+
+res.send(
+
+"❤️ HemoMatch Backend Running..."
+
+);
+
+
+}
+
+);
+
+
+
+
+
+
+
+// ===============================
+// ERROR HANDLER
+// ===============================
+
+
+app.use(
+
+(err,req,res,next)=>{
+
+
+console.log(
+err.message
+);
+
+
+
+res.status(500).json({
+
+message:
+err.message || "Server Error"
+
 });
 
 
-// Socket Connection
-io.on("connection", (socket) => {
+}
 
-    console.log(" User Connected:", socket.id);
-
-
-    // Join user specific room
-    socket.on("joinRoom", (userId) => {
-
-        socket.join(userId);
-
-        console.log(
-            `User ${userId} joined room`
-        );
-
-    });
-
-
-    socket.on("disconnect", () => {
-
-        console.log(
-            "🔴 User Disconnected:",
-            socket.id
-        );
-
-    });
-
-});
-
-
-// Make Socket.IO available inside controllers
-app.use((req, res, next) => {
-
-    req.io = io;
-
-    next();
-
-});
-
-
-// API Routes
-
-app.use(
-    "/api/emergency",
-    emergencyRoutes
 );
 
 
-app.use(
-    "/api/auth",
-    authRoutes
-);
 
 
-app.use(
-    "/api/donors",
-    donorRoutes
-);
 
 
-app.use(
-    "/api/admin",
-    adminRoutes
-);
 
 
-app.use(
-    "/api/hospitals",
-    hospitalRoutes
-);
+// ===============================
+// SERVER START
+// ===============================
 
 
-app.use(
-    "/api/bloodbanks",
-    bloodBankRoutes
-);
-
-
-app.use(
-    "/api/camps",
-    campRoutes
-);
-
-
-app.use(
-    "/api/certificates",
-    certificateRoutes
-);
-
-app.use(
- "/api/blood",
- bloodRoutes
-);
-
-// Test Route
-app.get("/", (req, res) => {
-
-    res.send(
-        " HemoMatch Backend Running..."
-    );
-
-});
-
-
-// Server Port
 const PORT =
-    process.env.PORT || 5000;
+
+process.env.PORT || 5000;
 
 
-// Start Server
-server.listen(PORT, () => {
 
-    console.log(
-        ` Server Running On Port ${PORT}`
-    );
 
-});
+server.listen(
+
+PORT,
+
+()=>{
+
+
+console.log(
+
+`🚀 Server Running On Port ${PORT}`
+
+);
+
+
+}
+
+);
